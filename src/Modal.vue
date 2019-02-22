@@ -92,6 +92,10 @@ export default {
       type: [String, Array],
       default: 'v--modal'
     },
+    styles: {
+      type: [String, Object],
+      default: () => ({ width: '600px' })
+    },
     minWidth: {
       type: Number,
       default: 0,
@@ -335,12 +339,11 @@ export default {
      * CSS styles for position and size of the modal
      */
     modalStyle () {
-      return {
+      return Object.assign({
         top: this.position.top + 'px',
         left: this.position.left + 'px',
-        width: this.trueModalWidth + 'px',
         height: this.isAutoHeight ? 'auto' : this.trueModalHeight + 'px'
-      }
+      }, this.styles)
     }
   },
   watch: {
